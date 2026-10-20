@@ -1,328 +1,305 @@
-# From Classical to Learning-Based Robotics
+### From Classical to Learning-Based Robotics
 
-This chapter ties the classical tools you’ve learned to the motivations for learning‑based methods, then points you to what comes next. We’ll keep it concise and add signposts so you know where to focus.
+### 1\. Introduction
 
-> [!TIP]
-> Don't worry if this page is a bit dense, we'll break it down in the next few units.
+Robotics has evolved from traditional model-based methods to modern learning-based approaches. Classical robotics uses mathematical models, kinematics, and control systems to perform tasks. Learning-based robotics uses data and machine learning to help robots learn behaviors and adapt to different situations.
 
-## What We've Learned So Far
+LeRobot is an open-source robotics library that makes robot learning more accessible by supporting robotics datasets, model training, and practical experimentation.
 
-First, a quick recap of the important concepts covered across the foundational units.
+This chapter summarizes classical robotics foundations, explains the advantages and limitations of learning-based methods, and introduces the advanced topics covered in the next units.
 
-<!-- TODO: Small timeline diagram with milestones: Classical → Kinematics → Control → Limitations → Learning motivation. -->
+### 2\. What We Have Learned So Far
 
-**Motivation for Learning-Based Robotics:** You've explored the fundamental shift occurring in robotics today, moving from classical model-based approaches toward data-driven learning methods. We've established why robot learning is becoming essential for creating more capable and generalizable robotic systems, and how tools like LeRobot are making these advanced techniques accessible to a broader community of researchers and practitioners.
+### 2.1 Motivation for Learning-Based Robotics
 
-**LeRobot Ecosystem:** You've gained a fundamental understanding of LeRobot's approach to robotics. This includes understanding the vision behind LeRobot as an end-to-end robotics library, aiming at integrating the different aspects of robotics altogether. You have also learned about the LeRobotDataset format, which handles the complexity of multi-modal robotics data, and got practical experience with loading and processing real robotics datasets for machine learning applications.
+Learning-based robotics represents a shift from manually programmed, model-based approaches toward data-driven methods.
 
-Next, you will learn how to synthetize autonomous control behaviors directly from data, and deploy them on real-world robots using lerobot.
+Traditional methods require experts to define mathematical models and rules. Learning-based methods allow robots to learn useful behaviors directly from data.
 
-**Classical Robotics Foundations:** We've examined the traditional approaches to robotics in detail, covering different types of robot motion including manipulation, locomotion, and mobile manipulation. You've learned about forward and inverse kinematics, differential kinematics, and feedback control systems. Most importantly, you've developed an understanding of why classical approaches, despite their mathematical rigor, struggle with the complexity and variability of real-world robotic applications.
+The main goals are to:
 
-## The Learning Revolution
+* Develop more capable robotic systems.
 
-Through our exploration of classical robotics, you've gained a clear understanding of why learning-based approaches represent such a significant advancement in the field.
+* Improve adaptability to different environments.
 
-**Classical approaches face fundamental limitations** that become apparent when dealing with real-world complexity. These methods require extensive mathematical modeling of every aspect of the robot's environment and interactions, which becomes prohibitively difficult for complex scenarios.
+* Enable learning from demonstrations and experience.
 
-They struggle to integrate multi-modal data sources like vision, touch, and proprioception in a unified way. Perhaps most importantly, classical approaches don't scale well across different tasks or robot embodiments—each new application typically requires significant re-engineering and expert knowledge.
+* Support generalization across tasks and robots.
 
-**Learning-based approaches offer compelling advantages** that directly address these limitations. Instead of requiring experts to model every aspect of the problem, these methods can learn appropriate behaviors and representations directly from data.
+* Make advanced robotics techniques more accessible through tools such as LeRobot.
 
-They naturally handle multi-modal, high-dimensional inputs through neural network architectures designed for such complexity, can generalize across different tasks and even different robot embodiments, and scale with the availability of data and computational resources.
+### 2.2 LeRobot Ecosystem
 
-<!-- TODO: graphic of pros and cons of classical and learning-based approaches -->
+LeRobot is an open-source library designed to support end-to-end robot learning.
 
-## What's Coming Next
+Its main features include:
 
-The foundational knowledge you've gained prepares you for the advanced topics that follow. 
+* Dataset management: Organizing and accessing robotics data.
 
-**Reinforcement Learning for Robotics** will explore how robots can learn optimal behaviors through trial and error interactions with their environment. You'll learn about designing appropriate reward signals for robotics tasks, understand reinforcement learning methods that enable robots to improve their performance over time, and tackle the crucial challenge of sample efficiency—learning effectively with limited real-world interaction data. We'll also cover how LeRobot implements these reinforcement learning algorithms in practice.
+* Multimodal data processing: Working with camera images, robot states, and actions.
 
-**Imitation Learning via Behavioral Cloning** will demonstrate how robots can acquire complex skills by observing and copying expert demonstrations. This approach is particularly valuable because it allows robots to learn from real-world human expertise without requiring explicit reward engineering, sidestepping the criticalities associated with using RL in practice. You'll understand how to handle the distribution shift problem that occurs when robots encounter situations not seen in training data, explore advanced imitation learning techniques beyond simple behavioral cloning, and gain practical experience implementing these methods using LeRobot's tools.
+* Model training: Training learning-based policies using collected data.
 
-**Foundation Models for Robotics** will cover the cutting-edge developments that are creating more general and capable robotic systems. You'll explore how multi-task learning enables knowledge sharing across different robotic platforms and tasks, understand language-conditioned policies that allow robots to follow natural language instructions, and learn about scaling laws that govern how performance improves with larger models and datasets. This section will prepare you to understand and contribute to the development of truly generalist robotic systems.
+* Evaluation: Testing model performance.
 
-## Practical Skills Gained
+* Robot deployment: Supporting practical experiments on compatible robotic platforms.
 
-Through this foundational section of the course, you've developed both technical capabilities and conceptual understanding that will serve as the foundation for more advanced topics.
+The LeRobotDataset format helps organize robotics information so it can be used for machine learning applications.
 
-**Technical Skills:** You now understand how robotics data differs from traditional machine learning datasets and why specialized formats are necessary. You've gained practical experience working with the LeRobotDataset API, including loading and processing multi-modal robotics data that combines vision, proprioception, and action information. You've also learned about streaming large datasets efficiently, which is crucial for working with the massive datasets that power modern robot learning systems.
+Next, we will explore how robots can learn autonomous control behaviors from data and deploy them on real-world robots using LeRobot.
 
-**Conceptual Understanding:** Perhaps most importantly, you've developed a clear mental model of the evolution occurring in robotics today. You understand the historical context of classical approaches, their mathematical foundations, and their fundamental limitations when applied to complex, real-world scenarios. You've gained insight into how learning-based approaches address these limitations and why the availability of large-scale robotics data is transforming what's possible in the field.
+### 2.3 Classical Robotics Foundations
 
-## Ready for the Next Challenge?
+Classical robotics provides the mathematical and engineering foundations for robot movement and control.
 
-> [!WARNING]
-> **You're now ready for advanced robot learning!** The concepts you've learned about data handling, multi-modal processing, and the limitations of classical approaches will be essential as we dive into:
->
-> - **Reinforcement Learning** - How robots learn optimal behaviors through trial and error
-> - **Imitation Learning** - How robots learn by watching human demonstrations  
-> - **Foundation Models** - How large-scale models are creating general-purpose robotic intelligence
->
-> **Coming soon:** These advanced units will build directly on the foundations you've just mastered.
+The main concepts include:
+
+* Manipulation: Using robotic arms to grasp and move objects.
+
+* Locomotion: Moving a robot from one place to another.
+
+* Mobile manipulation: Combining robot movement with object manipulation.
+
+* Forward kinematics: Calculating the end-effector position from joint values.
+
+* Inverse kinematics: Finding joint values needed to reach a desired position.
+
+* Differential kinematics: Relating joint velocities to end-effector velocities.
+
+* Feedback control: Adjusting robot actions based on observed errors.
+
+These concepts are important for understanding robot motion. However, classical methods can struggle when environments are complex, uncertain, or constantly changing.
+
+### 3\. Evolution of Robotics
+
+Classical Robotics
+
+Mathematical models and predefined rules
+
+Kinematics and Control
+
+Calculate motion and control robot behavior
+
+Limitations of Classical Methods
+
+Difficult modeling, adaptation, and scalability
+
+Learning-Based Robotics
+
+Learning behaviors from data and experience
+
+### 4\. The Learning Revolution
+
+### 4.1 Limitations of Classical Robotics
+
+Classical robotics uses mathematical models and carefully designed components to perform tasks. Although these approaches are effective in many applications, they face several limitations.
+
+* Complex modeling: Modeling every aspect of the environment and robot interaction can be difficult.
+
+* Multimodal integration: Combining vision, touch, and robot-state information can be challenging.
+
+* Limited scalability: A new task may require significant re-engineering.
+
+* Expert knowledge: Designing and tuning classical systems often requires specialized expertise.
+
+* Adaptability: Changes in objects or environments can reduce performance when the system relies on fixed assumptions.
+
+### 4.2 Advantages of Learning-Based Robotics
+
+Learning-based robotics uses data to learn behaviors and useful representations.
+
+Its main advantages are:
+
+* Data-driven learning: Robots can learn from demonstrations and collected experiences.
+
+* Multimodal processing: Neural networks can combine images, robot states, and other inputs.
+
+* Generalization: Models may learn behaviors that transfer to related tasks or environments.
+
+* Scalability: Performance can improve with suitable data, models, and computational resources.
+
+* Adaptability: Learning-based systems can handle some variations that are difficult to model manually.
+
+### 4.3 Classical vs Learning-Based Robotics
+
+| Classical robotics                           | Learning-based robotics                     |
+| -------------------------------------------- | ------------------------------------------- |
+| Relies heavily on mathematical models        | Learns patterns and behaviors from data     |
+| Often uses predefined rules                  | Uses trained models or policies             |
+| Requires expert modeling and tuning          | Requires suitable datasets and training     |
+| Can struggle with complex variations         | Can learn to handle some variations         |
+| Often requires task-specific redesign        | May transfer knowledge to related tasks     |
+| Uses explicit kinematics and control methods | Can combine learning with classical methods |
+
+Important: Learning-based methods do not completely replace classical robotics. Combining mathematical models, control systems, and learning can produce more capable robotic systems.
+
+### 5\. What's Coming Next?
+
+The foundational concepts prepare us for three important areas of robot learning.
+
+### 5.1 Reinforcement Learning for Robotics
+
+Reinforcement Learning (RL) allows a robot to learn through interactions with its environment.
+
+The robot performs an action, receives feedback through a reward, and improves its behavior over time.
+
+Key topics include:
+
+* States, actions, rewards, and policies.
+
+* Reward design for robotic tasks.
+
+* Learning through trial and error.
+
+* Improving performance over time.
+
+* Sample efficiency when real-world interactions are limited.
+
+* Implementing reinforcement learning methods in robotics.
+
+Example: A robot learns to move an object toward a target by receiving rewards for successful movements.
+
+### 5.2 Imitation Learning via Behavioral Cloning
+
+Imitation learning enables robots to learn by observing demonstrations from humans or expert controllers.
+
+Behavioral cloning is a method that trains a model to imitate demonstrated actions given the observed inputs.
+
+Key topics include:
+
+* Collecting expert demonstrations.
+
+* Preparing datasets for training.
+
+* Learning input-to-action mappings.
+
+* Understanding distribution shift.
+
+* Exploring advanced imitation learning methods.
+
+* Implementing imitation learning with LeRobot.
+
+Example: A robotic arm watches a human pick up a cup and learns to reproduce the demonstrated movement.
+
+Imitation learning can reduce the need to design explicit reward functions, although it still depends on demonstration quality and suitable training data.
+
+### 5.3 Foundation Models for Robotics
+
+Foundation models are large models trained on broad datasets that can support multiple tasks.
+
+In robotics, these models aim to help robots understand observations and instructions and perform a wider range of activities.
+
+Key topics include:
+
+* Multitask learning across different robotic tasks.
+
+* Language-conditioned policies.
+
+* Knowledge transfer between tasks and robot platforms.
+
+* Scaling models and datasets.
+
+* Developing more general-purpose robotic systems.
+
+Example: A robot receives the instruction “pick up the red block” and uses visual information and a trained policy to perform the task.
+
+### 6\. Practical Skills Gained
+
+### 6.1 Technical Skills
+
+Through the foundational units, learners develop the following technical skills:
+
+* Understanding the structure of robotics datasets.
+
+* Loading and processing data using the LeRobotDataset API.
+
+* Working with images, robot-state information, and actions.
+
+* Handling large datasets efficiently.
+
+* Understanding the role of training and evaluation in robot learning.
+
+### 6.2 Conceptual Understanding
+
+Learners also develop an understanding of:
+
+* The evolution from classical to learning-based robotics.
+
+* The mathematical foundations of robot movement and control.
+
+* The limitations of traditional methods in complex environments.
+
+* The importance of large-scale robotics datasets.
+
+* How learning-based methods can support transfer and generalization.
+
+These concepts provide a foundation for more advanced robot learning algorithms.
+
+### 7\. Suggested First Practical Project
+
+A suitable beginner project is a pick-and-place task using imitation learning with a compatible robotic arm, such as the SO-100 or SO-101.
+
+The basic workflow is:
+
+Step 1: Collect demonstrations
+
+Record examples of picking up and moving an object.
+
+Step 2: Prepare the dataset
+
+Organize camera observations, robot states, and actions.
+
+Step 3: Train the model
+
+Use demonstrations to train a policy that predicts robot actions.
+
+Step 4: Evaluate performance
+
+Test the policy and measure how reliably it completes the task.
+
+This project connects dataset preparation, model training, and evaluation in a practical workflow.
+
+### 8\. Course Summary
+
+The key points from this chapter are:
+
+* Robot learning represents a shift from purely model-based approaches toward data-driven methods.
+
+* LeRobot provides tools for working with robotics datasets and learning workflows.
+
+* Classical robotics supplies important foundations in kinematics, motion, and feedback control.
+
+* Classical methods can face challenges with complex modeling, adaptation, and scalability.
+
+* Learning-based methods can learn behaviors from data and may generalize across related tasks.
+
+* Reinforcement learning, imitation learning, and foundation models are important directions for advanced robotics.
+
+* Combining classical robotics with learning-based techniques can help develop more capable robotic systems.
+
+### 9\. Community and Learning Resources
+
+Continue learning through these resources:
+
+* [LeRobot Documentation](https://huggingface.co/docs/lerobot?utm_source=chatgpt.com)
+
+* [LeRobot GitHub Repository](https://github.com/huggingface/lerobot?utm_source=chatgpt.com)
+
+* [Robot Learning Tutorial](https://huggingface.co/spaces/lerobot/robot-learning-tutorial?utm_source=chatgpt.com)
+
+* [LeRobot Community](https://huggingface.co/lerobot?utm_source=chatgpt.com)
+
+Ways to contribute include sharing robotics experiments, contributing datasets, improving documentation, and participating in community discussions.
+
+### 10\. References
+
+* Sergey Levine et al. (2016), End-to-End Training of Deep Visuomotor Policies. [Paper](https://huggingface.co/papers/1504.00702?utm_source=chatgpt.com)
+
+* OpenAI et al. (2018), Learning Dexterous In-Hand Manipulation. [Paper](https://huggingface.co/papers/1808.00177?utm_source=chatgpt.com)
+
+* [LeRobot Documentation](https://huggingface.co/docs/lerobot?utm_source=chatgpt.com)
+
+* [Robot Learning Tutorial](https://huggingface.co/spaces/lerobot/robot-learning-tutorial?utm_source=chatgpt.com)
 
 
-## Course Summary
-- Robot learning represents a paradigm shift from model-based to data-driven approaches
-- LeRobot democratizes access to state-of-the-art robot learning techniques
-- Classical robotics provides important foundations but has fundamental scalability limitations
-- Learning-based methods can generalize across tasks, robots, and environments
-- The future lies in combining classical insights with learning capabilities
-- Large-scale datasets and foundation models are transforming what's possible in robotics
-
-## Community and Resources
-
-As you continue your robot learning journey:
-
-**Keep Learning:**
-- [Explore LeRobot documentation](https://huggingface.co/docs/lerobot)
-- [Try LeRobot examples](https://github.com/huggingface/lerobot)
-- [Give a read to our in-detail tutorial](https://huggingface.co/spaces/lerobot/robot-learning-tutorial)
-- [Join the community discussions](https://huggingface.co/lerobot)
-
-**Get Involved:**
-- Contribute datasets to the community
-- Share your robot learning experiments
-- Help improve LeRobot tools and documentation
-
-> [!TIP]
-> If you're choosing a first project, start with a small imitation learning task using LeRobotDataset (pick‑and‑place on SO‑100/SO‑101). You'll get end‑to‑end experience—data, model, evaluation—without needing reward design or simulators.
-
----
-
-**Congratulations on completing the foundational units!** You're now ready to dive into the exciting world of learning-based robotics algorithms.
-
-## References
-
-For a full list of references, check out the [tutorial](https://huggingface.co/spaces/lerobot/robot-learning-tutorial).
-
-- **End-to-End Training of Deep Visuomotor Policies** (2016)  
-  Sergey Levine et al.  
-  A landmark paper demonstrating how deep learning can be used for direct visuomotor control, bypassing traditional perception and planning modules. This represents a key step in the transition from classical to learning-based robotics.  
-  [arXiv:1504.00702](https://huggingface.co/papers/1504.00702)
-
-- **Learning Dexterous In-Hand Manipulation** (2018)  
-  OpenAI et al.  
-  This paper demonstrates how reinforcement learning with domain randomization can solve complex manipulation tasks that would be extremely difficult to program using classical methods, highlighting the advantages of learning-based approaches.  
-  [arXiv:1808.00177](https://huggingface.co/papers/1808.00177)
-
-## Final Chapter Quiz
-
-Test your understanding of the Classical Robotics unit. Choose the best answer for each question.
-
-### 1. Which set best categorizes types of robot motion discussed in this unit?
-
-<Question
-	choices={[
-		{
-			text: "Navigation, mapping, and planning",
-			explain: "These are pipeline functions, not motion categories."
-		},
-		{
-			text: "Manipulation, locomotion, and mobile manipulation",
-			explain: "These are the three motion categories described in the unit and latex section.",
-	            correct: true
-		},
-		{
-			text: "Simulation, perception, and control",
-			explain: "These refer to environments or pipeline components, not motion categories."
-		},
-	        {
-			text: "End-effector, joints, and sensors",
-			explain: "These are components, not motion categories."
-		}
-	]}
-/>
-
-### 2. What is the essential difference between forward kinematics (FK) and inverse kinematics (IK)?
-
-<Question
-	choices={[
-		{
-			text: "FK maps joint angles to end-effector pose, whereas IK maps a desired pose to joint angles",
-			explain: "Matches the unit and latex definition of FK and IK.",
-	            correct: true
-		},
-		{
-			text: "FK is about velocities and IK is about positions",
-			explain: "Velocities are handled in differential kinematics; FK/IK are mappings between configuration and task space."
-		},
-		{
-			text: "FK is only for 2‑DoF robots",
-			explain: "FK/IK apply to robots with arbitrary DoF."
-		},
-	        {
-			text: "IK is always faster to compute than FK",
-			explain: "IK is generally harder; FK is usually straightforward."
-		}
-	]}
-/>
-
-### 3. In differential kinematics, what does the Jacobian J(q) represent?
-
-<Question
-	choices={[
-		{
-			text: "A mapping from joint velocities to end‑effector velocities",
-			explain: "ṗ = J(q) q̇ is the fundamental relation (latex Section 02).",
-	            correct: true
-		},
-		{
-			text: "A mapping from end‑effector positions to joint torques",
-			explain: "That would involve dynamics, not the kinematic Jacobian here."
-		},
-		{
-			text: "The feasible workspace of the robot",
-			explain: "Workspace depends on link lengths and limits, not J(q) alone."
-		},
-	        {
-			text: "A motion planner for obstacle avoidance",
-			explain: "Planning is a separate module."
-		}
-	]}
-/>
-
-### 4. The closed‑form differential IK solution uses J(q)^+. What does the superscript '+' denote?
-
-<Question
-	choices={[
-		{
-			text: "The Moore–Penrose pseudo‑inverse",
-			explain: "This is stated explicitly in the unit and latex.",
-	            correct: true
-		},
-		{
-			text: "The transpose of the Jacobian",
-			explain: "J^T is not what '+' denotes."
-		},
-		{
-			text: "The determinant of the Jacobian",
-			explain: "Determinant is a scalar; '+' indicates pseudo‑inverse."
-		},
-	        {
-			text: "The adjugate of the Jacobian",
-			explain: "Not used here."
-		}
-	]}
-/>
-
-### 5. How do obstacles and joint limits affect IK in the planar manipulator example?
-
-<Question
-	choices={[
-		{
-			text: "They restrict the feasible set of configurations and make IK harder",
-			explain: "Latex Section 02 shows constraints narrowing Q and complicating IK.",
-	            correct: true
-		},
-		{
-			text: "They have no effect on IK solutions",
-			explain: "This contradicts the constraints discussion."
-		},
-		{
-			text: "They only change the FK mapping",
-			explain: "FK formula stays the same; feasibility changes."
-		},
-	        {
-			text: "They guarantee a unique IK solution",
-			explain: "Constraints can remove solutions or make multiple remain."
-		}
-	]}
-/>
-
-### 6. Which statement best characterizes classical robotics pipelines as presented in this unit?
-
-<Question
-	choices={[
-		{
-			text: "They are modular stacks with fixed interfaces (perception, state estimation, planning, control)",
-			explain: "Matches the modular pipeline described in latex Section 02.",
-	            correct: true
-		},
-		{
-			text: "They are single end‑to‑end learned policies",
-			explain: "That describes learning‑based approaches, not classical."
-		},
-		{
-			text: "They do not require expert tuning",
-			explain: "Expert tuning is a known limitation of classical pipelines."
-		},
-	        {
-			text: "They inherently integrate raw high‑dimensional inputs",
-			explain: "Integration of high‑dimensional inputs is a challenge for classical methods."
-		}
-	]}
-/>
-
-### 7. Which set lists the core limitations highlighted for dynamics‑based approaches?
-
-<Question
-	choices={[
-		{
-			text: "Integration challenges, limited scalability, modeling limitations, and overlooking data trends",
-			explain: "This is the exact set emphasized in the unit and latex figure.",
-	            correct: true
-		},
-		{
-			text: "Cost, accuracy, speed, and energy consumption",
-			explain: "Not the four core limitations discussed here."
-		},
-		{
-			text: "Hardware reliability, software licensing, and safety standards",
-			explain: "Important topics but not the four cited limitations."
-		},
-	        {
-			text: "Planner optimality, sensor calibration, and actuator wear",
-			explain: "These are narrower engineering issues, not the core set."
-		}
-	]}
-/>
-
-### 8. What key advantage of learning‑based approaches is emphasized as a contrast to classical methods?
-
-<Question
-	choices={[
-		{
-			text: "They can learn end‑to‑end from data and generalize across tasks/embodiments",
-			explain: "Consistent with the latex and unit discussion on generalization and end‑to‑end training.",
-	            correct: true
-		},
-		{
-			text: "They eliminate the need for sensors",
-			explain: "Sensors remain essential."
-		},
-		{
-			text: "They require no compute resources",
-			explain: "Compute and data scale are central to learning."
-		},
-	        {
-			text: "They do not need datasets",
-			explain: "Learning approaches rely on data."
-		}
-	]}
-/>
-
-### 9. Why does the availability of open robotics datasets matter in this unit’s context?
-
-<Question
-	choices={[
-		{
-			text: "It enables learning‑based methods to scale and transfer knowledge",
-			explain: "Matches the latex discussion of data trends motivating learning.",
-	            correct: true
-		},
-		{
-			text: "It reduces manufacturing costs of robot arms",
-			explain: "Manufacturing costs are separate from dataset availability."
-		},
-		{
-			text: "It removes the need for control theory entirely",
-			explain: "Control insights still matter, even with learning."
-		},
-	        {
-			text: "It guarantees perfect generalization",
-			explain: "No method guarantees perfect generalization."
-		}
-	]}
-/>
+Congratulations on completing the foundational units! You are now ready to explore reinforcement learning, imitation learning, and foundation models for robotics.
